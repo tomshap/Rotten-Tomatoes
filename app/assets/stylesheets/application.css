@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ .Page {
+    margin-left: 80px;
+    margin-top: 50px;
+ } 
+

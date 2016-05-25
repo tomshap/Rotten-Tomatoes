@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to movies_path, notice: "Welcome back, #{user.firstname}!"
+      redirect_to movies_path, notice: "Oh hey #{user.firstname}, we've seen you here before!!"
     else
       flash.now[:alert] = "Log in failed..."
       render :new
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to movies_path, notice: "Adios!"
+    redirect_to movies_path, notice: "See you later alligator (In a while crocodile)!"
   end
 
 end
