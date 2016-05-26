@@ -2,7 +2,7 @@
   <small>
     <% if current_user %>
       Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
-      <% if admin? %>
+      <% if admin_user? %>
         <%= link_to "User Management", admin_users_path %>
       <% end %> 
     <% else %>

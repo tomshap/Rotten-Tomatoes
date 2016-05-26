@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.welcome_email(@user).deliver
       session[:user_id] = @user.id
-      redirect_to movies_path, notice: "Welcome aboard, #{@user.firstname}!"
+      redirect_to movies_path, notice: "Welcome to Rotten Mangoes, #{@user.firstname}! We're excited that you decided to join us."
     else
       render :new
-    end unless admin?
+    end unless admin_user?
   end
 
   protected

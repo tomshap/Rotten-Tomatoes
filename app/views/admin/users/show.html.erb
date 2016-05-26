@@ -1,5 +1,7 @@
 <%= link_to "Back to all users", admin_users_path %><br/>
 
 <h2>Name: <%= @user.full_name %></h2>
+<h4>Admin: <%= @user.admin_user%></h4>
 <h4>Email: <%= @user.email %></h4>
-<h6>Created at:<%= @user.created_at %> | Updated at:<%= @user.updated_at %> </h4>
+<h6>Created at:<%= @user.created_at %></h6> 
+<h6>Updated at:<%= @user.updated_at %></h6>

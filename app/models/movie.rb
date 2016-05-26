@@ -16,26 +16,16 @@ class Movie < ActiveRecord::Base
   validates :description,
     presence: true
 
-  validates :image,
+  validates :poster_image_url,
     presence: true
 
   validates :release_date,
     presence: true
 
-  validate :release_date_is_in_the_future
-
   mount_uploader :poster_image_url, AvatarUploader
 
   def review_average
     (reviews.sum(:rating_out_of_ten)/reviews.size) unless (reviews.size == 0)
-  end
-
-  protected
-
-  def release_date_is_in_the_future
-    if release_date.present?
-      errors.add(:release_date, "I think this should be in the future.") if release_date < Date.today
-    end
   end
 
 end

@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-  before_filter :restrict_non_admins
+  # before_filter :restrict_non_admins
 
   def index
     @users = User.order("firstname").page(params[:page])
@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to users_path, notice: "#{@user.title} was submitted successfully!"
+      redirect_to admin_users_path, notice: "#{@user.firstname} was submitted successfully!"
     else
       render :new
     end
@@ -43,4 +43,11 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to admin_users_path
   end
+
+  protected
+
+  def user_params
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin_user)
+  end
+
 end
