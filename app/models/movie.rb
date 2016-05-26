@@ -1,6 +1,10 @@
 class Movie < ActiveRecord::Base
 
-  scope :under90, -> { where(:duration < 90)}
+  scope :with_title, -> (title) { where("title LIKE ?", "%#{title}%") }
+  scope :with_director, -> (director) { where("director like ?", "%#{director}%") }
+  scope :under_x_min, -> (max_limit) { where("runtime_in_minutes < ?", max_limit) }
+  scope :over_x_min, -> (min_limit) { where("runtime_in_minutes >= ?", min_limit) }
+  scope :with_title_or_director, -> (term) { where("title LIKE ? OR director LIKE ?", "%#{term}%", "%#{term}%") }
 
   has_many :reviews
 

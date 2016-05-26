@@ -1,12 +1,18 @@
-<footer>
-  <h4>
-    <% if current_user %>
-      Signed in as <strong><%= current_user.full_name %></strong></h4> <h5>(<%= link_to "Log out", session_path("current"), method: :delete %>)
+<footer class="footer">
+  <div class="container">
+    <hr>
+    <small>
+      <% if current_user %>
+        Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+        <%= link_to "Access Admin Area", admin_users_path if current_user.admin_user? %>
+
+      <% else %>
+        <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+
       <% if admin_user? %>
-        <%= link_to "User Management", admin_users_path %>
-      <% end %> 
-    <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>
-  </h5>
+        | Admin user signed in as <%= admin_user.full_name %> | <%= link_to "Switch back to admin", admin_return_to_self_path %>
+      <% end %>
+    </small>
+  </div>
 </footer>

@@ -1,19 +1,40 @@
-Rails.application.routes.draw do
+RottenMangoes::Application.routes.draw do
 
-  namespace :admin do
-  get 'users/index'
-  end
+  # get "reviews/new"
+  # get "reviews/create"
+  # get "sessions/new"
+  # get "sessions/create"
+  # get "users/new"
+  # get "users/create"
+  get 'movies', to: 'movies#index'
 
   resources :movies do
-    resources :reviews, only: [:new, :create]
+    resources :reviews
   end
-  resources :users, only: [:new, :create]
+
+  resources :users, only: [:new, :create, :show]
+
   resource :session, only: [:new, :create, :destroy]
-  root to: 'movies#index'
+
+  # namespace :admin do
+  #   resources :users
+  #   resources :sessions do
+  #     member do
+  #       get 'impersonate'
+  #     end
+  #     member do
+  #       get 'back_to_admin'
+  #     end
+  #   end
+  # end
 
   namespace :admin do
     resources :users
+    get '/users/:id/impersonate' => 'users#switch_to_user', as: :impersonate
+    get 'return-to-self' => 'users#switch_to_admin', as: :return_to_self
   end
+
+  root to: 'movies#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
