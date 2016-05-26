@@ -9,12 +9,13 @@
 </head>
 <body>
   <div class="Page">
+  <%= render 'layouts/footer' %>
   <% flash.each do |key,value|%>
-    <%= content_tag(:div,value) %>
+    <%= content_tag(:div,value, class: "strong") %>
   <% end %>
 
   <%= yield %>
-  <%= render 'layouts/footer' %>
+  
   </div>
 
 

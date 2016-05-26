@@ -1,12 +1,12 @@
 <footer>
-  <small>
+  <h4>
     <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+      Signed in as <strong><%= current_user.full_name %></strong></h4> <h5>(<%= link_to "Log out", session_path("current"), method: :delete %>)
       <% if admin_user? %>
         <%= link_to "User Management", admin_users_path %>
       <% end %> 
     <% else %>
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
-  </small>
+  </h5>
 </footer>

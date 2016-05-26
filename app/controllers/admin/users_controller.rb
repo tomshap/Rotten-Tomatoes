@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
 
-  # before_filter :restrict_non_admins
+  before_filter :restrict_non_admins
 
   def index
     @users = User.order("firstname").page(params[:page])
